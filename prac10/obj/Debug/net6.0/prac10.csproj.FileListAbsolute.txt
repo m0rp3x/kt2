@@ -1,0 +1,15 @@
+C:\Users\HOME\RiderProjects\prac10\prac10\bin\Debug\net6.0\prac10.exe
+C:\Users\HOME\RiderProjects\prac10\prac10\bin\Debug\net6.0\prac10.deps.json
+C:\Users\HOME\RiderProjects\prac10\prac10\bin\Debug\net6.0\prac10.runtimeconfig.json
+C:\Users\HOME\RiderProjects\prac10\prac10\bin\Debug\net6.0\prac10.dll
+C:\Users\HOME\RiderProjects\prac10\prac10\bin\Debug\net6.0\ref\prac10.dll
+C:\Users\HOME\RiderProjects\prac10\prac10\bin\Debug\net6.0\prac10.pdb
+C:\Users\HOME\RiderProjects\prac10\prac10\obj\Debug\net6.0\prac10.csproj.AssemblyReference.cache
+C:\Users\HOME\RiderProjects\prac10\prac10\obj\Debug\net6.0\prac10.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HOME\RiderProjects\prac10\prac10\obj\Debug\net6.0\prac10.AssemblyInfoInputs.cache
+C:\Users\HOME\RiderProjects\prac10\prac10\obj\Debug\net6.0\prac10.AssemblyInfo.cs
+C:\Users\HOME\RiderProjects\prac10\prac10\obj\Debug\net6.0\prac10.csproj.CoreCompileInputs.cache
+C:\Users\HOME\RiderProjects\prac10\prac10\obj\Debug\net6.0\prac10.dll
+C:\Users\HOME\RiderProjects\prac10\prac10\obj\Debug\net6.0\ref\prac10.dll
+C:\Users\HOME\RiderProjects\prac10\prac10\obj\Debug\net6.0\prac10.pdb
+C:\Users\HOME\RiderProjects\prac10\prac10\obj\Debug\net6.0\prac10.genruntimeconfig.cache
