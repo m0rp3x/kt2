@@ -6,10 +6,10 @@ namespace prac9;
 public class Operation
 {
     public string Trigger;
-    public Func<string, string> Fn;
+    public Func<List<string>, List<string>> Fn;
     public static List<Operation> List = new();
 
-    public Operation(string trigger, Func<string, string> fn)
+    public Operation(string trigger, Func<List<string>, List<string>> fn)
     {
         Trigger = trigger;
         Fn = fn;
@@ -19,23 +19,36 @@ public class Operation
     public static void CreateOperations()
     {
 
-        string ToLower(string str)
+        List<string> ToLower(List<string> var)
         {
-            return str.ToLower();
+            for (int i = 0; i < var.Count; i++)
+            {
+                var[i] = var[i].ToLower();
+            }
+            return var;
+        }
+        
+        List<string> ToUpper(List<string> var)
+        {
+            for (int i = 0; i < var.Count; i++)
+            {
+                var[i] = var[i].ToUpper();
+            }
+            return var;
         }
 
-        string ToUpper(string str)
-        {
-            return str.ToUpper();
-        }
-
-        string Replace(string var)
+        List<string> Replace(List<string> var)
         {
             Console.WriteLine("Replace > ");
             string oldValue = Console.ReadLine();
             Console.WriteLine("With > ");
             string newValue = Console.ReadLine();
-            return var.Replace(oldValue, newValue);
+            for (int i = 0; i < var.Count; i++)
+            {
+                var[i] = var[i].Replace(oldValue, newValue);
+            }
+
+            return var;
         }
 
         new Operation("tolower", ToLower);

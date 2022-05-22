@@ -20,18 +20,49 @@ public class Program
             Console.Write(buffer.ToArray());
         }
 
-        void Func(string value = "")
+        int selectLine(List<string> text)
         {
-            Console.WriteLine("(Leave blank for default) Input file name >");
-            string filename = Console.ReadLine();
+            Console.WriteLine("Select column: ");
+            int columnSelected = 0;
+            Console.Clear();
+            for (int i = 0; i < text.Count; i++)
+            {
+                Console.WriteLine($"{(i == columnSelected ? "> " : "  ")}{text[i]}");
+            }
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+            while (keyInfo.Key != ConsoleKey.Enter)
+            {
+                switch (keyInfo.Key)
+                {
+                    case ConsoleKey.DownArrow:
+                        columnSelected = columnSelected + 1 >= text.Count ? columnSelected : columnSelected + 1;
+                        break;
+                                
+                    case ConsoleKey.UpArrow:
+                        columnSelected = columnSelected - 1 <= 0 ? 0 : columnSelected - 1;
+                        break;
+                }
+                Console.Clear();
+                for (int i = 0; i < text.Count; i++)
+                {
+                    Console.WriteLine($"{(i == columnSelected ? "> " : "  ")}{text[i]}");
+                }
+                            
+                keyInfo = Console.ReadKey(true);
+            }
+
+            return columnSelected;
+        }
+
+        void Func()
+        {
             string path =
-                @$"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}\\{(filename == String.Empty ? DateTime.Now.ToLongDateString() : filename)}.txt";
+                @$"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}\\{DateTime.Now.ToLongDateString()}.txt";
             if (!File.Exists(path))
             {
                 File.CreateText(path).Close();
             }
-
-            value = File.ReadLines(path).ToList()[0];
+            
             List<string> text = File.ReadLines(path).ToList();
 
             while (true)
@@ -41,30 +72,30 @@ public class Program
                 {
                     Console.WriteLine(i);
                 }
-                Console.WriteLine($"{value}\nInput command >");
+                Console.WriteLine("Input command >");
                 string input = Console.ReadLine().ToLower();
 
                 switch (input)
                 {
+                    
                     case "save":
                         break;
                     
                     case "edit":
+                        int columnSelected = selectLine(text);
                         Console.Clear();
                         string caret = "> ";
-                        string defaultValue = value;
-
-                        Console.WriteLine();
+                        string defaultValue = text[columnSelected];
+                        int stroke = 0;
 
                         List<char> buffer = defaultValue.ToCharArray().Take(Console.WindowWidth - caret.Length - 1)
                             .ToList();
-                        List<List<char>> textbuffer = text.Select(x => x.ToCharArray().Take(Console.WindowWidth - caret.Length - 1)
-                            .ToList()).ToList();
+                        List<List<char>> textbuffer = text.Select(x => x.ToCharArray().ToList()).ToList();
                         Console.Write(caret);
                         Console.Write(buffer.ToArray());
                         Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop);
-
                         ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                        
                         while (keyInfo.Key != ConsoleKey.Enter)
                         {
                             switch (keyInfo.Key)
@@ -78,12 +109,26 @@ public class Program
                                         Math.Min(Console.CursorLeft + 1, caret.Length + buffer.Count),
                                         Console.CursorTop);
                                     break;
-                                case ConsoleKey.UpArrow:
+                                // case ConsoleKey.UpArrow:
+                                //     textbuffer[stroke] = buffer;
+                                //     stroke = stroke - 1 <= 0 ? 0 : stroke - 1;
+                                //     buffer = textbuffer[stroke].Take(Console.WindowWidth - caret.Length - 1).ToList();
+                                //     break;
+                                // case ConsoleKey.DownArrow:
+                                //     textbuffer[stroke] = buffer;
+                                //     stroke = stroke + 1 > textbuffer.Count - 1 ? textbuffer.Count - 1 : stroke + 1;
+                                //     buffer = textbuffer[stroke].Take(Console.WindowWidth - caret.Length - 1).ToList();
+                                //     break;
+                                case ConsoleKey.Enter:
                                     Console.SetCursorPosition(
                                         Math.Min(Console.CursorLeft, caret.Length + buffer.Count),
                                         Console.CursorTop);
-                                    buffer = textbuffer[textbuffer.IndexOf(buffer) + 1];
+                                    textbuffer[stroke] = buffer;
+                                    stroke = stroke + 1 > textbuffer.Count - 1 ? textbuffer.Count - 1 : stroke + 1;
+                                    textbuffer.Insert(stroke, new List<char>());
+                                    buffer = textbuffer[stroke].Take(Console.WindowWidth - caret.Length - 1).ToList();
                                     break;
+                                    
                                 case ConsoleKey.Home:
                                     Console.SetCursorPosition(caret.Length, Console.CursorTop);
                                     break;
@@ -93,6 +138,9 @@ public class Program
                                 case ConsoleKey.Backspace:
                                     if (Console.CursorLeft <= caret.Length)
                                     {
+                                        // textbuffer.RemoveAt(stroke);
+                                        // stroke = stroke - 1 <= 0 ? 0 : stroke - 1;
+                                        // buffer = textbuffer[stroke].Take(Console.WindowWidth - caret.Length - 1).ToList();
                                         break;
                                     }
 
@@ -134,19 +182,19 @@ public class Program
 
                         Console.Write(Environment.NewLine);
 
-                        value = new string(buffer.ToArray());
+                        text[columnSelected] = new string(buffer.ToArray());
                         continue;
 
                     default:
                         Console.Clear();
-                        value = Operation.List.Any(x => x.Trigger == input) ? Operation.List.Find(x => x.Trigger == input).Fn(value) : value;
+                        text = Operation.List.Any(x => x.Trigger == input) ? Operation.List.Find(x => x.Trigger == input).Fn(text) : text;
                         continue;
                 }
 
                 break;
             }
-
-            File.WriteAllText(path, value);
+            
+            File.WriteAllLines(path, text);
         }
 
         Func();

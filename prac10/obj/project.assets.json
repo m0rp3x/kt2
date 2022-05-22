@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\mi\\.nuget\\packages\\": {}
+    "C:\\Users\\Пользователь\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mi\\RiderProjects\\example_strings_chars\\prac10\\prac10.csproj",
+      "projectUniqueName": "C:\\Users\\Пользователь\\RiderProjects\\text\\prac10\\prac10.csproj",
       "projectName": "prac10",
-      "projectPath": "C:\\Users\\mi\\RiderProjects\\example_strings_chars\\prac10\\prac10.csproj",
-      "packagesPath": "C:\\Users\\mi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mi\\RiderProjects\\example_strings_chars\\prac10\\obj\\",
+      "projectPath": "C:\\Users\\Пользователь\\RiderProjects\\text\\prac10\\prac10.csproj",
+      "packagesPath": "C:\\Users\\Пользователь\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Пользователь\\RiderProjects\\text\\prac10\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\mi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Пользователь\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -58,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\mi\\.dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\Пользователь\\.dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
